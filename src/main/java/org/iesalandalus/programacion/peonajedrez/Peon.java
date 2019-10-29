@@ -4,7 +4,10 @@ public class Peon {
 	private Color color;
 	private Posicion posicion;
 	
-	
+	public Peon() {
+		this.color=Color.NEGRO;
+		this.posicion=new Posicion(7, 'd');
+	}
 	
 	public Color getColor() {
 		return color;
