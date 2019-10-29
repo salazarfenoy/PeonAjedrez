@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.peonajedrez;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Peon {
 	private Color color;
 	private Posicion posicion;
@@ -27,6 +29,26 @@ public class Peon {
 		} else if (color == Color.NEGRO) {
 			posicion = new Posicion(7, columna);
 		}
+	}
+	
+	public void mover(Direccion direccion) throws OperationNotSupportedException {
+		
+		switch (direccion){
+		case IZQUIERDA:
+			try {
+				setPosicion(new Posicion(posicion.getFila(), (char)(posicion.getColumna() - 1)));
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("ERROR: Movimiento no válido.");
+			}
+			
+		case DERECHA:
+			try {
+				setPosicion(new Posicion(posicion.getFila(), (char)(posicion.getColumna() + 1)));
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("ERROR: Movimiento no válido.");
+			}
+		}
+		
 	}
 
 	public Color getColor() {
