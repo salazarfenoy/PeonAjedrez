@@ -40,14 +40,36 @@ public class Peon {
 			} catch (IllegalArgumentException e) {
 				throw new OperationNotSupportedException("ERROR: Movimiento no válido.");
 			}
-			
+			break;
 		case DERECHA:
 			try {
 				setPosicion(new Posicion(posicion.getFila(), (char)(posicion.getColumna() + 1)));
 			} catch (IllegalArgumentException e) {
 				throw new OperationNotSupportedException("ERROR: Movimiento no válido.");
 			}
+			break;
 		}
+		
+	}
+	
+	public void mover (int movFila) throws OperationNotSupportedException {
+		switch (movFila) {
+		case 1:
+				setPosicion(new Posicion(posicion.getFila() + movFila, (char)(posicion.getColumna())));
+				
+			break;
+		case 2:
+		if (color== Color.BLANCO && posicion.getFila()== 2) {
+			setPosicion(new Posicion(posicion.getFila() + movFila, (char)(posicion.getColumna())));
+			
+		} else {
+			throw new OperationNotSupportedException("ERROR: El peón sólo se puede mover 2 pasos cuando se encuentra en la casilla inicial.");
+		}
+		
+	break;
+	default:
+		throw new OperationNotSupportedException("ERROR: El peón sólo se puede mover 1 o 2 pasos.");
+	}
 		
 	}
 
